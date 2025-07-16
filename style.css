@@ -1,0 +1,542 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Comic Sans MS', cursive, sans-serif;
+	background-color: #fff6f6;
+	color: #5a5a5a;
+}
+
+/* === NAVBAR === */
+.navbar {
+	background-color: #fde9e4;
+	padding: 25px 50px;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	font-family: 'Playfair Display', serif;
+	font-weight: 600;
+	font-size: 36px;
+	color: #db4c4c;
+	text-shadow: 1px 1px #ffecec;
+	letter-spacing: 1px;
+}
+.subtitle {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 300; /* tipis */
+	font-size: 18px;
+	opacity: 0.6;
+	color: #db4c4c;
+	margin-top: 2px;
+	letter-spacing: 0.5px;
+}
+
+.nav-menu {
+	list-style: none;
+	display: flex;
+	gap: 50px;
+}
+
+.nav-menu li a {
+	color: #db4c4c;
+	text-decoration: none;
+	transition: color 0.3s ease;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.nav-menu li a:hover {
+	color: #f48ca1;
+}
+
+.nav-menu li a.active {
+	color: #f48ca1;
+	font-weight: bold;
+	border-bottom: 2px solid #f48ca1;
+}
+
+.hamburger {
+	display: none;
+	font-size: 26px;
+	color: #db4c4c;
+	cursor: pointer;
+}
+
+/* === RESPONSIVE NAVBAR === */
+@media screen and (max-width: 768px) {
+	.nav-menu {
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color: #fde9e4;
+		width: 100%;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 80px 50px 25px;
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(-10%);
+		transition: opacity 0.3s ease, transform 0.3s ease;
+		z-index: 999;
+	}
+
+	.nav-menu.show {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
+
+	.nav-menu.active {
+		display: flex;
+	}
+
+	.hamburger {
+		display: block;
+		z-index: 1001; /* lebih tinggi dari nav-menu */
+	}
+
+	.navbar-container {
+		flex-direction: row;
+		justify-content: flex-start;
+		gap: 20px;
+	}
+
+	.logo {
+		margin-right: auto;
+	}
+}
+
+@keyframes slideDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-10%);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* === SECTION STYLING === */
+section {
+	padding: 100px 50px;
+	min-height: 100vh;
+	scroll-margin-top: 4rem; /* default, bisa adjust */
+}
+
+/* viewport height lebih besar dari 800px */
+@media screen and (min-height: 800px) {
+	section {
+		scroll-margin-top: 6rem;
+	}
+}
+
+/* viewport height sangat tinggi */
+@media screen and (min-height: 1000px) {
+	section {
+		scroll-margin-top: 8rem;
+	}
+}
+
+section h2 {
+	font-size: 32px;
+	margin-bottom: 10px;
+	color: #db4c4c;
+	font-family: 'Comic Sans MS', cursive, sans-serif;
+	text-shadow: 2px 2px #fff;
+}
+
+.nav-menu li a.active {
+	color: #f48ca1;
+	font-weight: bold;
+	border-bottom: 2px solid #f48ca1;
+	background-color: #ffecec;
+	padding: 5px 10px;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+}
+
+#hero {
+	min-height: 100vh;
+	background: linear-gradient(to bottom right, #fff6f6, #ffecec);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	padding: 3rem 2rem;
+}
+
+.hero-content {
+	animation: fadeIn 2s ease-out forwards;
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.hero-title {
+	font-family: 'Sacramento', cursive;
+	font-size: 3rem;
+	color: #db4c4c;
+	text-shadow: 1px 1px #fff;
+	margin-bottom: 1rem;
+	letter-spacing: 1px;
+}
+
+.hero-subtitle {
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.2rem;
+	color: #f48ca1;
+	opacity: 0.8;
+}
+
+/* Optional button */
+.hero-btn {
+	display: inline-block;
+	margin-top: 2rem;
+	padding: 0.8rem 1.5rem;
+	background-color: #db4c4c;
+	color: white;
+	text-decoration: none;
+	border-radius: 10px;
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+}
+
+.hero-btn:hover {
+	background-color: #f48ca1;
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* === SLIDESHOW UCAPAN === */
+.slideshow-container {
+	position: relative;
+	max-width: 100%;
+	margin: 15rem auto;
+	overflow: hidden;
+}
+
+.slide-box {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+	will-change: transform;
+}
+
+.slide {
+	flex: 0 0 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+}
+
+.slide > div {
+	width: 60%;
+	max-width: 600px;
+	margin: auto;
+	min-height: 250px;
+	padding: 30px;
+	font-size: 16px;
+	background: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: #db4c4c;
+}
+
+/* Tombol navigasi slideshow */
+.nav-btn {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(219, 76, 76, 0.5);
+	color: white;
+	border: none;
+	font-size: 24px;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 50%;
+	z-index: 10;
+	transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+	background-color: rgba(219, 76, 76, 0.8);
+}
+
+.nav-btn.left {
+	left: 10px;
+}
+.nav-btn.right {
+	right: 10px;
+}
+
+.nav-btn:disabled {
+	display: none;
+}
+
+@media screen and (max-width: 768px) {
+	.slideshow-container {
+		margin: 10rem auto;
+	}
+
+	.slide > div {
+		width: 80%;
+		padding: 20px;
+		font-size: 14px;
+	}
+}
+
+/* === SPIN WHEEL === */
+.wrapper {
+	width: 90%;
+	max-width: 34.37em;
+	margin: 0 auto;
+	padding: 3em;
+	border-radius: 1em;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.container {
+	position: relative;
+	width: 700px;
+	height: 700px;
+}
+
+#games {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10rem 2rem;
+}
+
+#wheel {
+	max-height: inherit;
+	width: 5;
+	top: 0;
+	padding: 0;
+}
+
+#spin-btn {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	height: 26%;
+	width: 26%;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 0;
+	background: radial-gradient(#f48ca1 50%, #db4c4c 85%);
+	color: white;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	letter-spacing: 0.1em;
+	font-weight: bold;
+}
+
+#wheel-pointer {
+	position: absolute;
+	width: 4em;
+	top: 45%;
+	right: -5%;
+}
+
+#final-value {
+	font-size: 1.5em;
+	text-align: center;
+	margin-top: 1.5em;
+	color: #db4c4c;
+	font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+	.wrapper {
+		font-size: 12px;
+	}
+
+	.container {
+		width: 150%;
+		height: 150%;
+	}
+
+	#wheel-pointer {
+		right: -5%;
+		width: 2.5em;
+		top: 45%;
+	}
+}
+
+/* === GALERI === */
+.gallery-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 75vh;
+	width: 100%;
+}
+
+.gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	width: 80%;
+}
+
+.gallery-item {
+	aspect-ratio: 16 / 9;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: #ffd6da;
+	border: 2px dashed #f48ca1;
+}
+
+.gallery-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* Responsive untuk mobile */
+@media screen and (max-width: 768px) {
+	.gallery-wrapper {
+		display: block;
+		height: auto;
+		padding: 5rem 0;
+	}
+
+	.gallery-grid {
+		grid-template-columns: 1fr;
+		margin: 0 auto;
+	}
+}
+
+/* ABOUT SECTION */
+#about {
+	padding: 2rem;
+	background-color: #fff6f6;
+	text-align: center;
+}
+
+.about-layout {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 2rem;
+	margin-top: 5rem;
+	padding: 4rem 0;
+}
+
+.about-box {
+	flex: 1 1 300px;
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* Box isi dalam masing-masing kolom */
+.content-box {
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+	background-color: #fde9e4;
+	width: 100%;
+	max-width: 1000px;
+	padding: 2rem;
+	border-radius: 16px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	text-align: left; /* agar paragraf lebih natural */
+	font-size: 1.1rem;
+	color: #444;
+	line-height: 1.6;
+}
+
+.content-box img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.content-box p {
+	margin-bottom: 1rem;
+}
+
+.about-box:first-child .content-box {
+	padding: 0.5rem;
+	/* max-width: 500px; */
+}
+
+/* Responsive untuk mobile */
+@media screen and (max-width: 768px) {
+	.about-layout {
+		flex-direction: column;
+		align-items: stretch;
+		margin-top: 5rem;
+		padding: 2rem 1rem;
+	}
+
+	.about-box {
+		width: 100%;
+		margin-bottom: 2rem;
+	}
+
+	.content-box {
+		padding: 1.5rem;
+		font-size: 1rem;
+	}
+
+	.content-box img {
+		width: 100%;
+		height: auto;
+		margin-bottom: 1rem;
+	}
+}
+
+@keyframes fadeSlideUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.content-box p.animate {
+	opacity: 0;
+	animation: fadeSlideUp 0.8s ease-out forwards;
+}
