@@ -540,3 +540,32 @@ section h2 {
 	opacity: 0;
 	animation: fadeSlideUp 0.8s ease-out forwards;
 }
+
+.image-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.about-image {
+  max-width: 100%;
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.download-btn {
+  display: inline-block;
+  width: 420px;
+  margin-top: 12px;
+  padding: 10px 0;
+  background-color: #f59eb5;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #e17b9e;
+}
