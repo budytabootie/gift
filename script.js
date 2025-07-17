@@ -60,22 +60,29 @@ let myChart = new Chart(wheel, {
 			//display labels inside pie chart
 			datalabels: {
 				color: '#ffffff',
-				font: {
-					size: isMobile ? 8 : 13,
+				font: context => ({
+					size: isMobile ? 10 : 13,
 					weight: 'bold',
+				}),
+				formatter: (value, context) => {
+					const label = context.chart.data.labels[context.dataIndex];
+					if (isMobile && label.length > 25) {
+						return label.slice(0, 25) + '...';
+					}
+					return label;
 				},
-				formatter: (_, context) => context.chart.data.labels[context.dataIndex],
-				anchor: 'center',
+				anchor: isMobile ? 'center' : 'end',
 				align: isMobile ? 'center' : 'end',
-				offset: isMobile ? -20 : -40,
+				offset: isMobile ? 0 : -20,
 				rotation: context => {
 					const meta = context.chart.getDatasetMeta(0);
 					const arc = meta.data[context.dataIndex];
 					const start = arc.startAngle;
 					const end = arc.endAngle;
 					const midAngle = (start + end) / 2;
-					return (midAngle * 180) / Math.PI; // rotate teks 90° dari arah radial slice
+					return (midAngle * 180) / Math.PI;
 				},
+				clip: false,
 			},
 		},
 	},
