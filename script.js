@@ -73,7 +73,7 @@ let myChart = new Chart(wheel, {
 				},
 				anchor: isMobile ? 'center' : 'end',
 				align: isMobile ? 'center' : 'end',
-				offset: isMobile ? 0 : -20,
+				offset: isMobile ? -10 : -250,
 				rotation: context => {
 					const meta = context.chart.getDatasetMeta(0);
 					const arc = meta.data[context.dataIndex];

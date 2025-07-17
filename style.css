@@ -542,34 +542,33 @@ section h2 {
 }
 
 .image-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  padding: 0 8px; /* Biar di mobile nggak mepet */
+  text-align: center;
 }
 
 .about-image {
-  width: 100%;
-  max-width: 420px;
+  width: auto;
+  max-width: 100%;
+  height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .download-btn {
+  display: inline-block;
   margin-top: 12px;
-  padding: 10px 0;
+  padding: 10px 20px;
   width: 100%;
   max-width: 420px;
-  text-align: center;
   background-color: #f59eb5;
   color: white;
   text-decoration: none;
   border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 .download-btn:hover {
   background-color: #e17b9e;
 }
+
